@@ -1,13 +1,10 @@
 {
   "name": "@akatsuki1910/psd-data-exporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "To install dependencies:",
   "homepage": "https://github.com/Akatsuki1910/psd-data-exporter#readme",
   "bugs": {
     "url": "https://github.com/Akatsuki1910/psd-data-exporter/issues"
-  },
-  "bin": {
-    "pde": "./bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,13 +15,16 @@
   "main": "dist/index.js",
   "module": "index.ts",
   "types": "dist/index.d.ts",
+  "bin": {
+    "pde": "./bin/index.js"
+  },
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "build": "tsc",
-    "test": "tsx ./lib/cli.ts --filePath $file",
-    "test:bin": "node ./dist/lib/cli.js --filePath $file"
+    "prepublishOnly": "bun run build",
+    "test": "tsx ./lib/cli.ts --filePath $file"
   },
   "dependencies": {
     "psd": "^3.4.0",
