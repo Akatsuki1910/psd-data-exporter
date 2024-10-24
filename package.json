@@ -6,13 +6,15 @@
   "bugs": {
     "url": "https://github.com/Akatsuki1910/psd-data-exporter/issues"
   },
+  "bin": {
+    "pde": "./bin/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/Akatsuki1910/psd-data-exporter.git"
   },
   "license": "MIT",
   "author": "Akatsuki1910",
-  "type": "module",
   "main": "dist/index.js",
   "module": "index.ts",
   "types": "dist/index.d.ts",
@@ -22,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "test": "tsx ./lib/cli.ts --filePath $file",
-    "test:bin": "pde --filePath $file"
+    "test:bin": "node ./dist/lib/cli.js --filePath $file"
   },
   "dependencies": {
     "psd": "^3.4.0",

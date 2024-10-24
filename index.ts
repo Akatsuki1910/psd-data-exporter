@@ -33,8 +33,6 @@ function filterLayers(
         if (!child.visible) return;
         let c: PSD.ChildrenExport | PSD.MaskExport = child;
 
-        console.log("child", child);
-
         if ("mask" in child) {
           c = child.mask;
         }
