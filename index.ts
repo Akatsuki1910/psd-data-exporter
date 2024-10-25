@@ -54,24 +54,15 @@ function pickSize(layer: PSD.Node.LayerExport | PSD.ChildrenExport, s: Size) {
   return size;
 }
 
-function getSize(layer: PSD.ChildrenExport, s: Size) {
+function getSize(layer: PSD.ChildrenExport | PSD.Node.LayerExport, s: Size) {
   let size = s;
 
   if ("children" in layer) {
     layer.children.forEach((child) => {
       if (!child.visible) return;
+      if ("text" in child && child.text !== undefined) return;
 
-      if ("children" in layer) {
-        layer.children.forEach((child) => {
-          if (!child.visible) return;
-
-          size = getSize(child, size);
-        });
-      }
-
-      if (child.type === "group") return size;
-
-      size = pickSize(child, size);
+      size = getSize(child, size);
     });
   } else {
     size = pickSize(layer, size);
